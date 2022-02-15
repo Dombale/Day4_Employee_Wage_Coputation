@@ -3,10 +3,13 @@ package com.blz;
 public class EmployeeWageComputation {
 
 	static int wagePerHour = 20;
-	static int empHrs = 0;
-	static int empHrsf = 8;
-	static int empHrsP = 4;
-	static int workingDay = 20;
+	static int fullDayHour = 8;
+	static int partTimeHour = 4;
+	static int workingDaysInMonth = 20;
+	static int wagePerDay;
+	static int totalWage = 0;
+	static int totalWorkingHour = 0;
+	static int totalWorkingDay = 0;
 
 	public static void main(String[] args) {
 		System.out.println("Welcome in Employee Wage Computation..!!");
@@ -15,24 +18,36 @@ public class EmployeeWageComputation {
 	}
 
 	public static void checkEmpSalary() {
-		int randomNum = (int) (Math.random() * 3); // create random number using math function
-		switch (randomNum) {
-		case 0:
-			System.out.println(" Employee is Absent ");
-			int salary = wagePerHour * empHrs; // Employee No Salary/Day
-			System.out.println("Employee salary is :" + salary);
-			break;
-		case 1:
-			System.out.println(" Employee is Present full time ");
-			int salary1 = wagePerHour * empHrsf * workingDay; // Employee full Salary/Month
-			System.out.println("Employee salary of Full time of Full Month is :" + salary1);
-			break;
-		case 2:
-			System.out.println(" Employee is Present part time ");
-			int salary11 = wagePerHour * empHrsP * workingDay; // Employee Part time Salary/Month
-			System.out.println("Employee salary of part time of full month is :" + salary11);
-			break;
+
+		for (int i = 1; i <= workingDaysInMonth; i++) {
+			if (totalWorkingHour <= 100 && totalWorkingDay <= 20) {
+				int empCheck = (int) Math.floor((Math.random() * 10) % 3);
+
+				if (empCheck == 2) {
+					wagePerDay = (wagePerHour * fullDayHour);
+					totalWage = totalWage + wagePerDay;
+					totalWorkingHour = totalWorkingHour + fullDayHour;
+					totalWorkingDay++;
+				}
+
+				else if (empCheck == 1) {
+
+					wagePerDay = (wagePerHour * partTimeHour);
+					totalWage = totalWage + wagePerDay;
+					totalWorkingHour = totalWorkingHour + partTimeHour;
+					totalWorkingDay++;
+				} else {
+					wagePerDay = 0;
+					totalWage = totalWage + wagePerDay;
+				}
+
+			} else
+				break;
 		}
 
+		System.out.println("Total working hour = " + totalWorkingHour);
+		System.out.println("Toatl working day = " + totalWorkingDay);
+		System.out.println("Total wage of the month = " + totalWage);
 	}
+
 }
