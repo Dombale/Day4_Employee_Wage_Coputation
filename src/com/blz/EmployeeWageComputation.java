@@ -5,6 +5,7 @@ public class EmployeeWageComputation {
 	static int wagePerHour = 20;
 	static int empHrs = 0;
 	static int empHrsf = 8;
+	static int empHrsP = 4;
 
 	public static void main(String[] args) {
 		System.out.println("Welcome in Employee Wage Computation..!!");
